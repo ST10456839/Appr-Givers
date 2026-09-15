@@ -1,0 +1,109 @@
+@using GiftOfTheGivers.Models
+@{
+    ViewData["Title"] = "Employee Dashboard";
+    var volunteers = (List<VolunteerSignup>)ViewBag.Volunteers;
+    var updates = (List<ProjectUpdate>)ViewBag.Updates;
+    var donations = (List<Donation>)ViewBag.Donations;
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>Employee Dashboard</h1>
+    <a asp-controller="Employee" asp-action="PostUpdate" class="btn btn-primary">Post a Project Update</a>
+</div>
+
+<div class="row g-4">
+    <div class="col-lg-6">
+        <h4>Volunteer Sign-Ups (@volunteers.Count)</h4>
+        @if (!volunteers.Any())
+        {
+            <p class="text-muted">No volunteers have registered yet.</p>
+        }
+        else
+        {
+            <div class="table-responsive">
+                <table class="table table-striped table-sm">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Contact</th>
+                            <th>Skills</th>
+                            <th>Availability</th>
+                            <th>Submitted</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var v in volunteers)
+                        {
+                            <tr>
+                                <td>@v.FullName</td>
+                                <td>@v.Email<br /><span class="text-muted small">@v.Phone</span></td>
+                                <td>@v.Skills</td>
+                                <td>@v.Availability</td>
+                                <td>@v.SubmittedDate.ToString("dd MMM yyyy")</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+    </div>
+
+    <div class="col-lg-6">
+        <h4>Recent Donations (@donations.Count)</h4>
+        @if (!donations.Any())
+        {
+            <p class="text-muted">No donations recorded yet.</p>
+        }
+        else
+        {
+            <div class="table-responsive">
+                <table class="table table-striped table-sm">
+                    <thead>
+                        <tr>
+                            <th>Donor</th>
+                            <th>Amount</th>
+                            <th>Type</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var d in donations)
+                        {
+                            <tr>
+                                <td>@d.DonorName</td>
+                                <td>@d.Amount.ToString("0.00") @d.Currency</td>
+                                <td>@(d.IsRecurring ? "Recurring" : "One-time")</td>
+                                <td>@d.DonationDate.ToString("dd MMM yyyy")</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+    </div>
+</div>
+
+<hr class="my-4" />
+
+<h4>Relief Project Updates (@updates.Count)</h4>
+@if (!updates.Any())
+{
+    <p class="text-muted">No updates posted yet.</p>
+}
+else
+{
+    <div class="row g-3">
+        @foreach (var u in updates)
+        {
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">@u.Title</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">@u.PostedDate.ToString("dd MMM yyyy") &middot; @u.PostedBy</h6>
+                        <p class="card-text">@u.Content</p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}

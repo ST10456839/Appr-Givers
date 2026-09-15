@@ -1,0 +1,33 @@
+@model ProjectUpdate
+@{
+    ViewData["Title"] = "Post Project Update";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-7">
+        <h1 class="mb-4">Post a Relief Project Update</h1>
+
+        <form asp-controller="Employee" asp-action="PostUpdate" method="post">
+            <div asp-validation-summary="All" class="text-danger"></div>
+
+            <div class="mb-3">
+                <label asp-for="Title" class="form-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+
+            <div class="mb-4">
+                <label asp-for="Content" class="form-label"></label>
+                <textarea asp-for="Content" class="form-control" rows="5"></textarea>
+                <span asp-validation-for="Content" class="text-danger"></span>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Post Update</button>
+            <a asp-controller="Employee" asp-action="Dashboard" class="btn btn-link">Cancel</a>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

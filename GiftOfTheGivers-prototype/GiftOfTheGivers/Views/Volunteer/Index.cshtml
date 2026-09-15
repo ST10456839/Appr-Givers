@@ -1,0 +1,53 @@
+@model VolunteerSignup
+@{
+    ViewData["Title"] = "Volunteer";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-7">
+        <h1 class="mb-2">Register Your Interest</h1>
+        <p class="text-muted mb-4">
+            Tell us about your skills and availability so we can call on you when disaster relief teams are needed.
+        </p>
+
+        <form asp-controller="Volunteer" asp-action="Index" method="post">
+            <div asp-validation-summary="All" class="text-danger"></div>
+
+            <div class="mb-3">
+                <label asp-for="FullName" class="form-label"></label>
+                <input asp-for="FullName" class="form-control" />
+                <span asp-validation-for="FullName" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Email" class="form-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Phone" class="form-label"></label>
+                <input asp-for="Phone" class="form-control" />
+                <span asp-validation-for="Phone" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Skills" class="form-label"></label>
+                <textarea asp-for="Skills" class="form-control" rows="3" placeholder="e.g. First aid, driving, logistics, translation"></textarea>
+                <span asp-validation-for="Skills" class="text-danger"></span>
+            </div>
+
+            <div class="mb-4">
+                <label asp-for="Availability" class="form-label"></label>
+                <input asp-for="Availability" class="form-control" placeholder="e.g. Weekends, or on-call for emergencies" />
+                <span asp-validation-for="Availability" class="text-danger"></span>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

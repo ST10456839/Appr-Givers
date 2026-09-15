@@ -1,0 +1,28 @@
+html {
+  font-size: 16px;
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  background-color: #fafafa;
+}
+
+.card {
+  border-radius: 0.6rem;
+}
+
+.navbar-brand span {
+  letter-spacing: 0.2px;
+}
+
+.btn-primary {
+  background-color: #0b5ed7;
+  border-color: #0b5ed7;
+}
+
+.btn-primary:hover {
+  background-color: #084298;
+  border-color: #084298;
+}

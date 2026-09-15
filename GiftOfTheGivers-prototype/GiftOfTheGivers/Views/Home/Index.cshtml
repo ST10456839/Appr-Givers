@@ -1,0 +1,67 @@
+@model List<GiftOfTheGivers.Models.ProjectUpdate>
+@{
+    ViewData["Title"] = "Home";
+}
+
+<div class="p-5 mb-4 rounded-3 text-white" style="background: linear-gradient(135deg, #0b5ed7, #084298);">
+    <div class="container-fluid py-4">
+        <h1 class="display-5 fw-bold">Bringing Hope When It Matters Most</h1>
+        <p class="col-md-8 fs-5">
+            The Gift of the Givers Foundation delivers swift, effective disaster relief across
+            South Africa and beyond. This platform helps us coordinate volunteers, track donations,
+            and keep communities informed during a crisis.
+        </p>
+        <a class="btn btn-light btn-lg me-2" asp-controller="Donate" asp-action="Index">Donate Now</a>
+        <a class="btn btn-outline-light btn-lg" asp-controller="Volunteer" asp-action="Index">Become a Volunteer</a>
+    </div>
+</div>
+
+<div class="row g-4 mb-5">
+    <div class="col-md-4">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title">Rapid Response</h5>
+                <p class="card-text">Our teams mobilise within hours of a disaster to deliver food, water, and medical aid.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title">Volunteer Network</h5>
+                <p class="card-text">Volunteers register their skills and availability so we can call on the right people fast.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title">Transparent Giving</h5>
+                <p class="card-text">Every donation is tracked, with a certificate issued for your records.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<h3 class="mb-3">Latest Relief Project Updates</h3>
+@if (!Model.Any())
+{
+    <p class="text-muted">No updates have been posted yet. Check back soon.</p>
+}
+else
+{
+    <div class="row g-3">
+        @foreach (var update in Model)
+        {
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">@update.Title</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">@update.PostedDate.ToString("dd MMM yyyy") &middot; @update.PostedBy</h6>
+                        <p class="card-text">@update.Content</p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
